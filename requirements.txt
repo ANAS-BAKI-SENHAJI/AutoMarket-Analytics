@@ -1,0 +1,9 @@
+streamlit==1.43.0
+pandas==2.2.2
+plotly==5.15.0
+numpy
+psycopg2-binary==2.9.10
+streamlit-extras==0.6.0
+matplotlib
+sqlalchemy
+streamlit-plotly-events

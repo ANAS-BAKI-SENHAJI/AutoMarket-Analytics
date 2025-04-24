@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    container_name: projet_auto_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: Projet_auto
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+
+  streamlit:
+    build: .
+    command: streamlit run /app/streamlit/app.py
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: youssef
+      POSTGRES_DB: Projet_auto
+      POSTGRES_HOST: host.docker.internal        # ✅ Nom du service Docker PostgreSQL
+      POSTGRES_PORT: 5432
+    depends_on:
+      - db
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - db
+
+  airflow:
+    image: apache/airflow:2.6.0
+    container_name: airflow_web
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@db:5432/Projet_auto
+      AIRFLOW__CORE__FERNET_KEY: "3ULsKz-1RqRMxVVvkwJg5FBR_nkHtHWg09-ti37uXa4="
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "True"
+      AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: 300
+      AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: 300
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./start_airflow.sh:/start_airflow.sh
+      - .:/app
+      - ./data:/opt/airflow/data
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    command: ["bash", "/start_airflow.sh"]
+
+volumes:
+  postgres_data:
+  pgadmin_data:
