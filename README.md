@@ -89,7 +89,7 @@ make clean
 ## 🙌 Remerciements
 - L'Université du Québec à Montreal
 - Monsieur Salah Aziz notre encadrant & professeur
-- L'équipe de développement et collègues Anas-Baki Sanheji, Moustapha Mboumba & Youssef Meddeb
+- L'équipe de développement et collègues Anas-Baki Sanheji, Moustapha Adrien & Youssef Meddeb
 - Documentation officielle Streamlit
 - Documentation officielle PostgreSQL
 - Communauté Plotly
