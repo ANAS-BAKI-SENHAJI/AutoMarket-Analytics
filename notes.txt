@@ -1,0 +1,4 @@
+Revoir l'extraction et le rafraichissement (fichier delta)
+Dans DB : id_annonce et modele (prefix site + n° d'annonce)
+Rafraichissement dans airflow
+Reorganiser Airflow
