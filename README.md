@@ -81,11 +81,9 @@ make clean
 ---
 
 ## 🖼️ Captures d'écran
-```markdown
+
 ![Page d'accueil](assets/homepage.png)
 ![Analyse du marché](assets/analyse.png)
-```
-
 ---
 
 ## 🙌 Remerciements
