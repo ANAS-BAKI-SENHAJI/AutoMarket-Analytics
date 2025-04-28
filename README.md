@@ -83,12 +83,15 @@ make clean
 ## 🖼️ Captures d'écran
 ```markdown
 ![Page d'accueil](assets/homepage.png)
-![Analyse du marché](assets/analysis.png)
+![Analyse du marché](assets/analyse.png)
 ```
 
 ---
 
 ## 🙌 Remerciements
+- L'Université du Québec à Montreal
+- Monsieur Salah Aziz notre encadrant & professeur
+- L'équipe de développement et collègues Anas-Baki Sanheji, Moustapha Mboumba & Youssef Meddeb
 - Documentation officielle Streamlit
 - Documentation officielle PostgreSQL
 - Communauté Plotly
